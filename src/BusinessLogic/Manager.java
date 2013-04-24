@@ -3,7 +3,6 @@ package BusinessLogic;
 import BusinessEntity.Bestelling;
 
 
-
 public class Manager {
 
     Bestelling bestelling = new Bestelling();
