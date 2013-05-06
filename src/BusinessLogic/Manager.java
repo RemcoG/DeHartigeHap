@@ -9,6 +9,10 @@ public class Manager {
     String menucode;
 
     
+    
+    
+    
+    
     public String Bestel(String menucode, int tafelnummer2){
         return bestelling.Bestel(menucode,tafelnummer2);
     }
