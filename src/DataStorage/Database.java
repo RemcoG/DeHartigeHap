@@ -30,7 +30,7 @@ public class Database {
     public void Connectie() {
         try {
             /* Connectie naar MySQL database leggen */
-            con = DriverManager.getConnection("jdbc:mysql://www.vp4i2010b.aibbreda.nl/vp4i2010b_c1", " vp4i2010b_a", "2change");
+            con = DriverManager.getConnection("jdbc:mysql://localhost", "root", "");
             //statements cre�ren
             stmt = con.createStatement();
             stmt1 = con.createStatement();
