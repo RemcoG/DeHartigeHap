@@ -101,7 +101,7 @@ public class Bestelling {
                 rs3.next();
                 Prijs = rs3.getDouble("Prijs");
                 aantalprijs = Prijs * Collections.frequency(list, word);
-                output = Collections.frequency(list, word) + "x " + word + "      â‚¬" + f.format(aantalprijs);
+                output = Collections.frequency(list, word) + "x " + word + "      €" + f.format(aantalprijs);
                 getal = Collections.frequency(list, word);
                 output1 = output1 + output + "\n";
                 totaalprijs = totaalprijs + aantalprijs;
@@ -117,7 +117,7 @@ public class Bestelling {
 
             finaloutput =
                    "De volgende gerechten zijn besteld: \n"
-                    + output1 + "\n Totaal:    â‚¬" + f.format(totaalprijs);
+                    + output1 + "\n Totaal:    €" + f.format(totaalprijs);
             System.out.println(tafelnummer2);
            } catch (SQLException o) {
             System.out.println(o.getMessage());
