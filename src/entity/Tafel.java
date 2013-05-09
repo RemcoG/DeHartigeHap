@@ -1,4 +1,4 @@
-package BusinessEntity;
+package entity;
 
 public class Tafel {
 

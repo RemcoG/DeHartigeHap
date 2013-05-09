@@ -2,7 +2,7 @@
  * @author Remco
  *
  */
-package DataStorage;
+package dataStorage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,10 +15,6 @@ import java.sql.Statement;
 //public class Database extends Gui {
 public class Database {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     String queryTekst;
     Statement stmt;
     ResultSet rs;
@@ -32,8 +28,7 @@ public class Database {
             /* Connectie naar MySQL database leggen */
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DeHartigeHap",
         	        "root", ""); 
-            //statements cre�ren
-            stmt = con.createStatement();
+                       stmt = con.createStatement();
 
             /*Succes melding als connectie naar MySQL database is gelukt */
             if (!con.isClosed()) {
@@ -63,15 +58,29 @@ public class Database {
         }
     }
 
-    public ResultSet VoerSelectQueryuit(String selectcommando) {
+    public String getMenuItem(String selectcommando) {
         try {
         	stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
-            return rs;
+            rs.next();
+            return rs.getString("MenuItemNaam");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    
+    public double getPrijs(String selectcommando) {
+        try {
+        	stmt = con.createStatement();
+            rs = stmt.executeQuery(selectcommando);
+            rs.next();
+            return rs.getDouble("Prijs");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println(e.getMessage());
+            return 0;
         }
     }
 }
