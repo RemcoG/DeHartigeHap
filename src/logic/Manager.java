@@ -15,9 +15,7 @@ public class Manager {
 		this.f = new DecimalFormat("##.00");
 	}
 
-	
-
-	public void addMenuItem(String menucode) {
+        public void addMenuItem(String menucode) {
 		bestelling.addMenuItem(menucode);
 	}
 
