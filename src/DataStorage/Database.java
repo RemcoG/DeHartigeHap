@@ -20,8 +20,8 @@ public class Database {
      */
     private static final long serialVersionUID = 1L;
     String queryTekst;
-    Statement stmt, stmt1, stmt2;
-    ResultSet rs2;
+    Statement stmt;
+    ResultSet rs;
     public Connection con = null;
 
     //public Database(){
@@ -34,8 +34,6 @@ public class Database {
         	        "root", ""); 
             //statements cre�ren
             stmt = con.createStatement();
-            stmt1 = con.createStatement();
-            stmt2 = con.createStatement();
 
             /*Succes melding als connectie naar MySQL database is gelukt */
             if (!con.isClosed()) {
@@ -49,6 +47,7 @@ public class Database {
 
     public void VoerInsertQueryuit(String sqlcommando) {
         try {
+            stmt = con.createStatement();
             stmt.executeUpdate(sqlcommando);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -57,7 +56,8 @@ public class Database {
 
     public void VoerUpdateQueryuit(String updatecommando) {
         try {
-            stmt1.executeUpdate(updatecommando);
+        	stmt = con.createStatement();
+        	stmt.executeUpdate(updatecommando);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -65,8 +65,9 @@ public class Database {
 
     public ResultSet VoerSelectQueryuit(String selectcommando) {
         try {
-            rs2 = stmt2.executeQuery(selectcommando);
-            return rs2;
+        	stmt = con.createStatement();
+            rs = stmt.executeQuery(selectcommando);
+            return rs;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println(e.getMessage());
