@@ -16,10 +16,10 @@ public class Manager {
 	}
 
         public void addMenuItem(String menucode) {
-		bestelling.addMenuItem(menucode);
+		bestelling.addMenuItem(Integer.parseInt(menucode));
 	}
 
-	public String getArray() {
+	public String getOutput() {
 		output = "";
 		for (MenuItem item : bestelling.getItems()) {
 			output = output + "€" + f.format(item.getPrijs()) + "     " + item.getNaam()+ "\n";
@@ -34,5 +34,12 @@ public class Manager {
 		}
 		return bedrag;
 	}
-
+        public void save(int tafelnummer){
+            bestelling.saveGerechten(tafelnummer);
+            bestelling.saveDrankjes(tafelnummer);
+        }
+      
+        public void afrekenen(int tafelnummer, String updateQuery){
+            bestelling.afrekenen(updateQuery);
+        }
 }

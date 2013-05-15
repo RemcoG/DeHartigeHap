@@ -26,8 +26,8 @@ public class Database {
     public void Connectie() {
         try {
             /* Connectie naar MySQL database leggen */
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DeHartigeHap",
-        	        "root", ""); 
+            con = DriverManager.getConnection("jdbc:mysql://www.vp4i2010b.aibbreda.nl/vp4i2010b_c1",
+        	        "vp4i2010b_c1", "2change"); 
                        stmt = con.createStatement();
 
             /*Succes melding als connectie naar MySQL database is gelukt */
@@ -63,7 +63,7 @@ public class Database {
         	stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
             rs.next();
-            return rs.getString("MenuItemNaam");
+            return rs.getString("productNaam");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println(e.getMessage());
@@ -76,7 +76,32 @@ public class Database {
         	stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
             rs.next();
-            return rs.getDouble("Prijs");
+            return rs.getDouble("productPrijs");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
+    public String getType(String selectcommando) {
+        try {
+        	stmt = con.createStatement();
+            rs = stmt.executeQuery(selectcommando);
+            rs.next();
+            return rs.getString("type");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    public int getProductNr(String selectcommando) {
+        try {
+        	stmt = con.createStatement();
+            rs = stmt.executeQuery(selectcommando);
+            rs.next();
+            return rs.getInt("productNr");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println(e.getMessage());

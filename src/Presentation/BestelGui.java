@@ -1,22 +1,20 @@
 package presentation;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JTextArea;
-import java.awt.Color;
-import logic.Manager;
-
-
 import java.text.DecimalFormat;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import logic.Manager;
 
 public class BestelGui extends JFrame {
 
@@ -31,7 +29,7 @@ public class BestelGui extends JFrame {
 	// Create the frame
 	
 	public BestelGui(final Manager manager, final DecimalFormat f) {
-
+                setTitle("Bestellen");
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 333);
@@ -44,21 +42,39 @@ public class BestelGui extends JFrame {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent args0) {
-				if (textField.getText().toString().length() == 3) {
-					textArea.setText("");
-					manager.addMenuItem(textField.getText());
-					textArea.setText(manager.getArray() + "\nTotaal:      €" + f.format(manager.getTotaalPrijs()));
-					textField.setText("");
-				}
-			}
+				if (textField.getText().toString().length() == 5) {
+                                    switch(Integer.parseInt(textField.getText())%1000){
+                                        case 301:
+//                                               Hier wordt doorgestuurd
+                                                 System.out.println("Doorsturen");
+                                                 manager.save(Integer.parseInt(textField.getText())/1000);
+                                                 break;
+                                        case 302:
+//                                               Hier wordt afgerekend
+                                                 System.out.println("Afrekenen");
+                                                 manager.afrekenen(Integer.parseInt(textField.getText())/1000,"");
+                                                 break;
+                                        case 303:
+//                                               Verdere functionaliteiten
+                                                 System.out.println("Anders");
+                                                 break;
+                                        default: textArea.setText("");
+                                                 manager.addMenuItem(textField.getText());
+                                                 textArea.setText(manager.getOutput() + "\nTotaal:      €" + f.format(manager.getTotaalPrijs()));
+                                                 break;
+                                            
+                                    }
+                                    textField.setText("");
+                                        }
+                        }
 		});
 
 		textField.setColumns(10);
 
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		sp = new JScrollPane(textArea);
-		
+		sp = new JScrollPane(textArea);                
+                
 		JLabel lblScanUwBarcode = new JLabel("Scan uw barcode:");
 		
 		JLabel lblUwBestelling = new JLabel("Uw bestelling:");
@@ -72,7 +88,7 @@ public class BestelGui extends JFrame {
 						.addComponent(lblUwBestelling)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 						.addComponent(sp, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(151, Short.MAX_VALUE))
+                                        .addContainerGap(151, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
