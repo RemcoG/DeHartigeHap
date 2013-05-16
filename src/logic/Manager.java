@@ -35,11 +35,14 @@ public class Manager {
 		return bedrag;
 	}
         public void save(int tafelnummer){
-            bestelling.saveGerechten(tafelnummer);
-            bestelling.saveDrankjes(tafelnummer);
+            bestelling.save(tafelnummer);
         }
       
         public void afrekenen(int tafelnummer, String updateQuery){
             bestelling.afrekenen(updateQuery);
+        }
+        
+        public void clearMenuLijst(){
+            bestelling.clearMenuLijst();
         }
 }

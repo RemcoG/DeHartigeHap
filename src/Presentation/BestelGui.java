@@ -46,8 +46,8 @@ public class BestelGui extends JFrame {
                                     switch(Integer.parseInt(textField.getText())%1000){
                                         case 301:
 //                                               Hier wordt doorgestuurd
-                                                 System.out.println("Doorsturen");
                                                  manager.save(Integer.parseInt(textField.getText())/1000);
+                                                 manager.clearMenuLijst();
                                                  break;
                                         case 302:
 //                                               Hier wordt afgerekend

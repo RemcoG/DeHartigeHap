@@ -10,25 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//import Presentation.Gui;
-
-//public class Database extends Gui {
 public class Database {
 
-    String queryTekst;
-    Statement stmt;
-    ResultSet rs;
-    public Connection con = null;
+    private Statement stmt;
+    private ResultSet rs;
+    private Connection con = null;
 
-    //public Database(){
-    //Database db = new Database();
-    //}
     public void Connectie() {
         try {
             /* Connectie naar MySQL database leggen */
-            con = DriverManager.getConnection("jdbc:mysql://www.vp4i2010b.aibbreda.nl/vp4i2010b_c1",
-        	        "vp4i2010b_c1", "2change"); 
-                       stmt = con.createStatement();
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DeHartigeHap",
+	        "root", ""); 
+//            con = DriverManager.getConnection("jdbc:mysql://www.vp4i2010b.aibbreda.nl/vp4i2010b_c1",
+//                    "vp4i2010b_c1", "2change");
+            stmt = con.createStatement();
 
             /*Succes melding als connectie naar MySQL database is gelukt */
             if (!con.isClosed()) {
@@ -40,19 +35,10 @@ public class Database {
         }
     }
 
-    public void VoerInsertQueryuit(String sqlcommando) {
-        try {
-            stmt = con.createStatement();
-            stmt.executeUpdate(sqlcommando);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public void VoerUpdateQueryuit(String updatecommando) {
         try {
-        	stmt = con.createStatement();
-        	stmt.executeUpdate(updatecommando);
+            stmt = con.createStatement();
+            stmt.executeUpdate(updatecommando);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -60,7 +46,7 @@ public class Database {
 
     public String getMenuItem(String selectcommando) {
         try {
-        	stmt = con.createStatement();
+            stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
             rs.next();
             return rs.getString("productNaam");
@@ -70,10 +56,10 @@ public class Database {
             return null;
         }
     }
-    
+
     public double getPrijs(String selectcommando) {
         try {
-        	stmt = con.createStatement();
+            stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
             rs.next();
             return rs.getDouble("productPrijs");
@@ -83,22 +69,11 @@ public class Database {
             return 0;
         }
     }
-    
-    public String getType(String selectcommando) {
-        try {
-        	stmt = con.createStatement();
-            rs = stmt.executeQuery(selectcommando);
-            rs.next();
-            return rs.getString("type");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+
+
     public int getProductNr(String selectcommando) {
         try {
-        	stmt = con.createStatement();
+            stmt = con.createStatement();
             rs = stmt.executeQuery(selectcommando);
             rs.next();
             return rs.getInt("productNr");

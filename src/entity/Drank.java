@@ -10,11 +10,9 @@ package entity;
  */
 public class Drank extends MenuItem{
 
-    private String type;
-    
-    public Drank(String naam, double prijs, String type, int productNr){
+    public Drank(String naam, double prijs, int productNr){
         super(naam, prijs, productNr);
-        this.type = type;
+     
     }
     
 }
