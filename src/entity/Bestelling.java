@@ -19,7 +19,7 @@ public class Bestelling {
     private int nummer=0;
 
     public Bestelling() {
-        menuItems = new ArrayList<>();
+        menuItems = new ArrayList<MenuItem>();
         db = new Database();
         db.Connectie();
     }
@@ -50,7 +50,7 @@ public class Bestelling {
         }
      
         List<String> list = Arrays.asList(gerechtLijst.split("/"));
-        Set<String> duplicates = new HashSet<>(list);
+        Set<String> duplicates = new HashSet<String>(list);
         
         for (String word : duplicates){
             db.VoerInsertQueryuit("INSERT INTO bestellingregel (bestellingNr,productNr, Aantal) VALUES (LAST_INSERT_ID(), '" + word + "', "+ Collections.frequency(list, word) + ")");
@@ -66,7 +66,7 @@ public class Bestelling {
             drankLijst += d.getProductNr() +"/";
             }
         List<String> list = Arrays.asList(gerechtLijst.split("/"));
-        Set<String> duplicates = new HashSet<>(list);
+        Set<String> duplicates = new HashSet<String>(list);
         
         for (String word : duplicates){
             db.VoerInsertQueryuit("INSERT INTO bestellingregel (bestellingNr,productNr, Aantal) VALUES (LAST_INSERT_ID(), '" + word + "', "+ Collections.frequency(list, word) + ")");

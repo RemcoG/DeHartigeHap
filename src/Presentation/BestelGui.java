@@ -55,8 +55,9 @@ public class BestelGui extends JFrame {
                                                  manager.afrekenen(Integer.parseInt(textField.getText())/1000,"");
                                                  break;
                                         case 303:
-//                                               Verdere functionaliteiten
-                                                 System.out.println("Anders");
+//                                               Hier wordt een menu-item gecorrigeerd
+                                                 System.out.println("Correctie");
+                                                 manager.correctie(Integer.parseInt(textField.getText())/1000,"");
                                                  break;
                                         default: textArea.setText("");
                                                  manager.addMenuItem(textField.getText());

@@ -42,4 +42,9 @@ public class Manager {
         public void afrekenen(int tafelnummer, String updateQuery){
             bestelling.afrekenen(updateQuery);
         }
+
+		public void correctie(int tafelnummer, String string) {
+			// TODO Auto-generated method stub
+			
+		}
 }
