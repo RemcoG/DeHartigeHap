@@ -35,16 +35,22 @@ public class Manager {
 		return bedrag;
 	}
         public void save(int tafelnummer){
-            bestelling.saveGerechten(tafelnummer);
-            bestelling.saveDrankjes(tafelnummer);
+            bestelling.save(tafelnummer);
         }
       
         public void afrekenen(int tafelnummer, String updateQuery){
             bestelling.afrekenen(updateQuery);
         }
+<<<<<<< HEAD
 
 		public void correctie(int tafelnummer, String string) {
 			// TODO Auto-generated method stub
 			
 		}
+=======
+        
+        public void clearMenuLijst(){
+            bestelling.clearMenuLijst();
+        }
+>>>>>>> 55c5268e42a3e6563f312f463c3afdee202163aa
 }
